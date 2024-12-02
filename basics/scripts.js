@@ -73,17 +73,71 @@ gomszab.GetTierLevel()
 console.log(gomszab);
 
 
-function Person(name){
-    this.name = name
+// function Person(name){
+//     this.name = name;
+// }
+
+class Person {
+    constructor(name) {
+        this.name = name;
+    }
+    getName() {
+        return this.name;
+    }
 }
 
 Person.prototype.GetName = function(){
-    return this.name
+    return this.name;
 }
 
-function Student(name, school){
-    Person.call(this, name)
-    this.school = school
+// function Student(name, school){
+//     Person.call(this, name);
+//     this.school = school;
+// }
+
+class Student extends Person {
+    constructor(name, school) {
+        super(name);
+        this.school = school;
+    }
 }
 
-Object.setPrototypeOf(Student.prototype, Person.prototype)
+// Object.setPrototypeOf(Student.prototype, Person.prototype)
+
+const student = new Student("Géza", "Bolyai");
+console.log("Név: " + student.GetName() + " | " + "Iskola: " + student.school);
+
+class Animal {
+    constructor(name){
+        this.name = name;
+    }
+    sound(){
+        console.log(this.name + " hangot ad ki.")
+    }
+}
+
+class Bird extends Animal {
+    constructor(name){
+        super(name);
+    }
+    fly(){
+        console.log(this.name + " repül.");
+    }
+}
+
+class Mammal extends Animal { 
+    constructor(name){
+        super(name);
+    }
+    walk(){
+        console.log(this.name + " sétál."); 
+    } 
+}
+
+const bird = new Bird("Sas"); 
+bird.sound(); 
+bird.fly();
+
+const mammal = new Mammal("Kutya");
+mammal.sound();
+mammal.walk();
