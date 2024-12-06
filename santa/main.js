@@ -29,9 +29,9 @@ const companionList = [
 const factory = new Factory();
 
 document.getElementById('companion').addEventListener('submit',function(e){
-        e.fault();
-        const form =  e.currentTarget
-        addCompanion(factory);
+        e.preventDefault();
+        const form =  e.currentTarget;
+        addCompanion(form, factory);
 }); 
 document.getElementById('product').addEventListener('submit',function(e){
     e.preventDefault();
@@ -53,7 +53,6 @@ function initTable(){
         console.log(comp);
 
         factory.addMano(comp)
-        createRow(comp)
     }
     console.log(factory)
 }

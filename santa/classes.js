@@ -6,6 +6,10 @@ class Factory{
     addMano(mano)
     {   
         this.manolista.push(mano);
+        createRow(mano);
+    }
+    createID(){
+        return this.manolista.length
     }
 }
 class Companion{
