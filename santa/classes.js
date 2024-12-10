@@ -7,10 +7,29 @@ class Factory{
     {   
         this.manolista.push(mano);
         createRow(mano);
+        appendToSelector(mano);
     }
+
     createID(){
         return this.manolista.length
     }
+
+    showProductsList(ID){
+        for(let i = 0; i < this.manolista.length; i++){
+                if(this.manolista[i].id == ID){
+                    refreshProductList(this.manolista[i]);
+                }
+        }
+    }
+
+    addProductsMano(product, id) {
+        for (let i = 0; i < this.manolista.length; i++) {
+          if (this.manolista[i].id == id) {
+            this.manolista[i].addProduct(product);
+            this.showProductsList(this.manolista[i].id);
+          }
+        }
+      }
 }
 class Companion{
     // TODO 5
