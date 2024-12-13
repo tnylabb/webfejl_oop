@@ -68,7 +68,7 @@ class FormController{
         return v.value
     }
     #getInputById(id){
-        this.#form.querySelector('#' + id)
+        return this.#form.querySelector('#' + id)
     }
 }
 
@@ -77,7 +77,16 @@ function init(){
     const form = document.getElementById('form')
 
     const controller = new FormController(form)
-
+    form.addEventListener('submit', function(e){
+        e.preventDefault()
+        const obj = {
+            lastname: controller.lastname,
+            firstname1: controller.firstname1,
+            firstname2: controller.firstname2,
+        }
+        const pers = new Person(obj)
+        pers.render(tbody)
+    })
     for(const elem of array){
         const person = new Person(elem)
         person.render(tbody)
