@@ -29,14 +29,26 @@ class ArrayList {
     }
 
     Clear(){
+        for (let i in this) {
+            delete this[i];
+        }
         this.#length = 0
         this.#state = {}
+    }
+
+    Contains(item) {
+        for (let i = 0; i < this.#length; i++) {
+            if (this.#state[i] === item) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 
 const alma = {}
 
-Object.defineProperty(alma, "nev", { value: "Ferenc", writable: true})  
+Object.defineProperty(alma, "nev", { value: "Ferenc", writable: true, enumerable: true, configurable: true })  
 alma.nev="Géza"
 console.log(alma)
 
@@ -50,3 +62,12 @@ console.log(igen)
 
 igen.Add({new:"objectgdg"})
 console.log(igen)
+
+console.log(igen.Contains(5));
+console.log(igen.Contains("gfdgdfgs"));
+console.log(igen.Contains({new:"objectsadfhsdf"}));
+
+igen.Clear()
+
+console.log(igen)
+console.log(igen.Count)
