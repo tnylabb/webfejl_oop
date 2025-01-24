@@ -4,12 +4,14 @@ class ArrayList {
      */
     #length
     #state
+    
+    #arraytable
 
     get Count() {
         return this.#length
     }
 
-    constructor(){
+    constructor(array = undefined){
         this.#length = 0
         this.#state = {};        
     }
@@ -18,10 +20,10 @@ class ArrayList {
         const index = this.#length
         this.#state[index] = item
         Object.defineProperty(this, index, {
-            get: function(){
+            get: () => {
                 return this.#state[index]
             },
-            set: function(value){
+            set: (value) => {
                 this.#state[index] = value
             }
         })
@@ -46,9 +48,66 @@ class ArrayList {
     }
 }
 
+
+class tableHTMLArray extends HTMLElement{
+    #tbody
+    #thead
+    constructor(){
+        super()
+    }
+
+    connectedCallback(){
+        const table = document.createElement('table')
+        this.appendChild(table)
+
+        const thead = document.createElement('thead')
+        table.appendChild(thead)
+
+        this.#tbody = document.createElement('tbody')
+        table.appendChild(this.#tbody)
+    }
+    
+/**
+ * 
+ * @param {{nev:String eletkor:Number}} param 
+ */
+    addPersonRow(param){
+        const tr = document.createElement('tr')
+        this.#tbody.appendChild(tr)
+
+        const td1 = document.createElement('td')
+        const td2 = document.createElement('td')
+
+        td1.innerHTML = param.nev
+        td2.innerHTML = param.eletkor
+
+        tr.appendChild(td1)
+        tr.appendChild(td2)
+    }
+}
+
+customElements.define('array-table', tableHTMLArray)
+const arraytable = new tableHTMLArray()
+document.body.appendChild(arraytable)
+
+arraytable.addPersonRow({nev: "Zseraldina", eletkor: 12})
+arraytable.addPersonRow({nev: "Ármándó", eletkor: 52})
+arraytable.addPersonRow({nev: "Bálázsovics", eletkor: 74})
+arraytable.addPersonRow({nev: "Dorado", eletkor: 43})
+arraytable.addPersonRow({nev: "Grófó", eletkor: 23})
+arraytable.addPersonRow({nev: "Ldedi", eletkor: 34})
+arraytable.addPersonRow({nev: "Pimpa", eletkor: 13})
+arraytable.addPersonRow({nev: "Rajmondo", eletkor: 61})
+arraytable.addPersonRow({nev: "Mandino", eletkor: 9})
+arraytable.addPersonRow({nev: "Tschavolo", eletkor: 26})
+arraytable.addPersonRow({nev: "Flutyi", eletkor: 15})
+arraytable.addPersonRow({nev: "Gimics", eletkor: 75})
+
 const alma = {}
 
 Object.defineProperty(alma, "nev", { value: "Ferenc", writable: true, enumerable: true, configurable: true })  
+Objec2.defineProperty(alma, "eletkor",  
+    tr.appendChild(td1), { value: "Ferenc", writable: true, enumerable: true, configurable: true })  
 alma.nev="Géza"
 console.log(alma)
 
