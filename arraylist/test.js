@@ -16,11 +16,11 @@ const func = (param) => {
     console.log(param.nev)
 }
 
-const alma = fun
-alma({nev:"cirmi"})
+const almaFunc = fun
+almaFunc({nev:"cirmi"})
 
 const korte = funa.bind({nev:"II. András"})
-korte();
+korte();    
 
 const obj = {
     funa:(param) => {

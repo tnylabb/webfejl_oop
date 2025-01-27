@@ -106,8 +106,6 @@ arraytable.addPersonRow({nev: "Gimics", eletkor: 75})
 const alma = {}
 
 Object.defineProperty(alma, "nev", { value: "Ferenc", writable: true, enumerable: true, configurable: true })  
-Objec2.defineProperty(alma, "eletkor",  
-    tr.appendChild(td1), { value: "Ferenc", writable: true, enumerable: true, configurable: true })  
 alma.nev="Géza"
 console.log(alma)
 
@@ -130,3 +128,18 @@ igen.Clear()
 
 console.log(igen)
 console.log(igen.Count)
+
+let personCounter = 1
+
+const button = document.createElement("button")
+button.innerHTML = "Hozzáadás"
+button.addEventListener("click", () => {
+    const newPerson = {
+        nev: `User ${personCounter}`,
+        eletkor: Math.floor(Math.random() * 100) + 1};
+    const arrayList = new ArrayList(arraytable);
+    arrayList.Add(newPerson)
+    arraytable.addPersonRow(newPerson)
+    personCounter++
+})
+document.body.appendChild(button)
