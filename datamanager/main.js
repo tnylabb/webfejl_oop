@@ -17,7 +17,7 @@ class DataManager {
      */
     #callback
 /**
- * @param {Person} array
+ * @param {Person[]} array
  */
     constructor(array = []) {
         this.#array = array
@@ -37,10 +37,10 @@ class DataManager {
 
     /**
      * 
-     * @param {Person[]} asd 
+     * @param {Person} person 
      */
-    add(asd){
-        this.#array.push(asd)
+    add(person){
+        this.#array.push(person)
         this.#callback(this.#array)
     }
 
@@ -53,7 +53,7 @@ class DataManager {
         const result = []
         for (const item of this.#array) {
             if (item.nev.includes(name)) {
-                result1.push(item)
+                result.push(item)
             }
         }
         this.#callback(result)
@@ -66,8 +66,8 @@ class DataManager {
     filterAge(age){
         const result = []
         for (const item of this.#array) {
-            if (item.eletkor === age) {
-                result2.push(item)
+            if (item.eletkor == age) {
+                result.push(item)
             }
         }
         this.#callback(result)
@@ -110,9 +110,19 @@ const dataManager = new DataManager([
 ])
 const dataTable = new DataTable(dataManager)
 
-const input1 = document.createElement('input')
-document.body.appendChild(input1)
+const inputname = document.createElement('input')
+inputname.placeholder = 'Name'
+inputname.id = 'name'
+document.body.appendChild(inputname)
 
+const inputage = document.createElement('input')
+inputage.placeholder = 'Age'
+inputage.id = 'age'
+document.body.appendChild(inputage)
 
-const input2 = document.createElement('input')
-document.body.appendChild(input2)
+document.getElementById('name').addEventListener('input', (e) => {
+    dataManager.filterName(e.currentTarget.value);
+})
+document.getElementById('age').addEventListener('input', (e) => {
+    dataManager.filterAge(e.currentTarget.value);
+})
