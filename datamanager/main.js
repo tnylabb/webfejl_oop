@@ -72,6 +72,17 @@ class DataManager {
         }
         this.#callback(result)
     }
+
+
+    filter(filterCallback) {
+        const result = []
+        for (const item of this.#array) {
+            if (filterCallback(item)) {
+                result.push(item)
+            }
+        }
+        this.#callback(result)
+    }
 }
 
 class DataTable {
@@ -126,3 +137,20 @@ document.getElementById('name').addEventListener('input', (e) => {
 document.getElementById('age').addEventListener('input', (e) => {
     dataManager.filterAge(e.currentTarget.value);
 })
+
+const inputfield = document.createElement('input')
+inputfield.type = 'file'
+document.body.appendChild(inputfield)
+inputfield.addEventListener('change', (e) => {
+    const file = e.currentTarget.files[0]
+    const reader = new FileReader()
+    reader.readAsText(file)
+    reader.onload = () => {
+        const filecontent = reader.result
+        const split = filecontent.split('\n')
+        for (const elem of split) {
+            const [nev, eletkor] = elem.split(';')
+            dataManager.add({nev, eletkor: Number(eletkor)})
+        }
+    }
+});
