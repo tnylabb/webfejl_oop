@@ -83,6 +83,19 @@ class DataManager {
         }
         this.#callback(result)
     }
+
+    order(compareFunction) {
+        const sortedArray = [...this.#array].sort(compareFunction);
+        this.#callback(sortedArray);
+    }
+
+    orderByAge() {
+        this.order((a, b) => b.eletkor - a.eletkor);
+    }
+
+    orderByName() {
+        this.order((a, b) => b.nev.localeCompare(a.nev));
+    }
 }
 
 class DataTable {
@@ -93,6 +106,26 @@ class DataTable {
     constructor(dataManager){
         const table = document.createElement('table')
         document.body.appendChild(table)
+
+        const thead = document.createElement('thead')
+        table.appendChild(thead)
+        const tr = document.createElement('tr')
+        thead.appendChild(tr)
+
+        const th1 = document.createElement('th')
+        th1.innerHTML = 'Name'
+        tr.appendChild(th1)
+        th1.addEventListener('click', () => {
+            dataManager.orderByName()
+        })
+
+        const th2 = document.createElement('th')
+        th2.innerHTML = 'Age'
+        tr.appendChild(th2)
+        th2.addEventListener('click', () => {
+            dataManager.orderByAge()
+        })
+
         const tbody = document.createElement('tbody')
         table.appendChild(tbody)
 
