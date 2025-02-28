@@ -97,7 +97,7 @@ class Manager{
     /**
      *  Megjeleniti az elso kerdest es valaszlehetosegeket 
     */
-    start() {
-        this.#nextQuestionCallback(this.#array[0].questionText)
-        this.#nextAnswersCallback(this.#array[0].answers)
-    }
+    // start() {
+    //     this.#nextQuestionCallback(this.#array[0].questionText)
+    //     this.#nextAnswersCallback(this.#array[0].answers)
+    // }
