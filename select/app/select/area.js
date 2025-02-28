@@ -1,7 +1,12 @@
 class Area {
      #div;
+     #manager;
      get div(){
          return this.#div;
+     }
+
+     get manager(){
+         return this.#manager;
      }
 
      constructor(cssclass,manager){
